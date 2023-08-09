@@ -1,4 +1,4 @@
 package com.example.ejercicios
 
-class Cliente(var name:String,var document:String,var email:String) {
+class Cliente(var name:String,val document:String,var email:String,var address:String, var phone:Long) {
 }

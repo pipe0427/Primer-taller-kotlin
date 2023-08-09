@@ -2,17 +2,26 @@ package com.example.ejercicios
 
 class Empresa(val name: String,val nit: String,val address: String,val empleados:ArrayList<Empleado>) {
 
-    /** var clientes:ArrayList<Cliente> = ArrayList()*/
+    val clientes:ArrayList<Cliente> = ArrayList()
 
     init {
     }
+
+    // EMPLEADO
     fun buscarEmpleado(document: String):Empleado?{
         return empleados.find { it.document == document }
     }
-    fun agregarEmpleado(name:String, document: String,email: String,salary: Int,dependencia: Empleado.Dependencia,empleadosSub:ArrayList<Empleado>?):Empleado{
+    fun agregarEmpleado(name:String, document: String,email: String,salary: Int,dependencia: Empleado.Dependencia,empleadosSub:ArrayList<Empleado>?):Empleado?{
         val empleado:Empleado = Empleado(name,document,email,salary,dependencia,empleadosSub)
-        empleados.add(empleado)
-        return empleado
+        val aux:Empleado? = buscarEmpleado(empleado.document)
+        if(aux == null){
+            empleados.add(empleado)
+            return empleado
+        }else{
+            println("No se agrego ya que el empleado existe")
+            return null
+        }
+
     }
 
     fun updateEmpleado( name:String,  document:String,  email:String,  salary:Int,  dependencia: Empleado.Dependencia):Boolean{
@@ -48,38 +57,55 @@ class Empresa(val name: String,val nit: String,val address: String,val empleados
     }
 
 
+    // CLIENTE
 
-    /**fun buscarCliente(document: String):Cliente?{
+    fun buscarCliente(document: String):Cliente?{
         return clientes.find { it.document == document }
     }
-    fun agregarCliente(cliente:Cliente){
+    fun agregarCliente(name: String,document: String,email: String,address: String,phone:Long):Cliente?{
+        val cliente:Cliente = Cliente(name,document,email,address,phone)
         val aux:Cliente? = buscarCliente(cliente.document)
         if(aux == null){
             clientes.add(cliente)
-            println("Se agrego correctamente")
+            return cliente
+        }else{
+            println("No se agrego ya que el cliente existe")
+            return null
         }
-        println("No se pudo agregar")
     }
 
-    fun updateCliente( name:String,  document:String,  email:String){
+    fun updateCliente( name:String,  document:String,  email:String,address: String,phone: Long):Boolean{
         var aux:Cliente? = buscarCliente(document)
         if(aux != null){
             aux.name = name
             aux.email = email
+            aux.address = address
+            aux.phone = phone
             println("Se actualizo correctamente")
+            return true
         }else{
             println("No se encontro el empleado")
+            return false
         }
 
     }
 
-    fun deleteCliente(document: String){
+    fun deleteCliente(document: String):Boolean{
         val aux:Cliente? = buscarCliente(document)
         if(aux != null){
             clientes.remove(aux)
+            println("Se elmino correctamente el cliente ${aux.name}")
+            return true
+        }else{
+            println("No se pudo eliminar el cliente")
+            return false
         }
-    }*/
+    }
+    fun listarClientes(): List<Cliente> {
+        return clientes.toList()
+    }
 
+    // NOMINA
     fun nomina(){
         var nomina:Int = 0
         for(i in empleados){
