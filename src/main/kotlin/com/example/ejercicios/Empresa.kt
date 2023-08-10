@@ -2,12 +2,15 @@ package com.example.ejercicios
 
 class Empresa(val name: String,val nit: String,val address: String,val empleados:ArrayList<Empleado>) {
 
+    // no se pone la lista en el constructor ya que la empresa se pede crear sin clientes
     val clientes:ArrayList<Cliente> = ArrayList()
 
     init {
     }
 
     // EMPLEADO
+
+    //se recibe el documento de la persona, y se busca la palabra it.document hace referencia al documento del empleado en si filtra por documento en la lista empleados
     fun buscarEmpleado(document: String):Empleado?{
         return empleados.find { it.document == document }
     }

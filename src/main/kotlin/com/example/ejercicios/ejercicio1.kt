@@ -15,10 +15,10 @@ fun main(){
     divicion2(12,3)
 
     // se crean empleados antes ya que la empresa siempre tiene que tener empleados asi no tenga clientes
-    var juan = Empleado("Juan","123","pipe.04271@gmail.com",2000,Empleado.Dependencia.gerencia, null)
-    var majo = Empleado("Majo","321","majo@gmail.com",1000,Empleado.Dependencia.recursosHumanos, null)
+    val juan = Empleado("Juan","123","pipe.04271@gmail.com",2000,Empleado.Dependencia.gerencia, null)
+    val majo = Empleado("Majo","321","majo@gmail.com",1000,Empleado.Dependencia.recursosHumanos, null)
     // se crea la empresa con los empleados
-    var empresa = Empresa("juan S.A.S","4321", "Armenia-Quindio", arrayListOf(juan,majo))
+    val empresa = Empresa("juan S.A.S","4321", "Armenia-Quindio", arrayListOf(juan,majo))
 
     // se agrega un empleado
     empresa.agregarEmpleado("felipe","123","felipe.04271@gmail.com",2000,Empleado.Dependencia.gerencia, null)
@@ -51,7 +51,7 @@ fun main(){
     println("Clientes:" + "${empresa.listarClientes()}")
 
     // se actualiza la informacion del cliente y se lista los clientes para corroborar que se hayan actualizado los datos
-    empresa.updateCliente("Satniag","0986","quintero@gmail.com","en una casa verde",3148795643)
+    empresa.updateCliente("Satniago","0986","quintero@gmail.com","en una casa verde",3148795643)
     println("Clientes:" + "${empresa.clientes[0]}")
 
     // se elimina el cliente y se listan los clientes para corroborar que se haya borrado correctamente
